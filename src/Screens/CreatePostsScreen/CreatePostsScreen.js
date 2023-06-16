@@ -125,8 +125,10 @@ const CreatePostsScreen = ({ navigation }) => {
 
                     </TouchableOpacity>  </Text></ImageBackground>}
                 </View>
-                <TouchableOpacity ><Text style={styles.postImgText}>Завантажте фото</Text>
-                </TouchableOpacity>
+
+                {!image ? <TouchableOpacity ><Text style={styles.postImgText}>Завантажте фото</Text>
+                </TouchableOpacity> : <TouchableOpacity ><Text style={styles.postImgText}>Редагувати фото</Text>
+                </TouchableOpacity>}
                 <View style={styles.postForm}>
                     <TextInput style={styles.postName} onChangeText={inputTitlte} onFocus={() => {
                         setIsShowKeyboard(true);
@@ -136,14 +138,14 @@ const CreatePostsScreen = ({ navigation }) => {
                             top: 66,
 
                         }} />
+                        {!image ? <Text style={{ ...styles.postName, paddingLeft: 10, color: '#BDBDBD' }} inputMode="navigation">
+                            <EvilIcons name="location" size={24} color="gray" />Місцевість...</Text> :
+                            <Text style={{ ...styles.postName, paddingLeft: 10 }} inputMode="navigation"> <EvilIcons name="location" size={24} color="gray" />{inputRegion}</Text>}
 
-                        <TextInput style={{ ...styles.postName, paddingLeft: 25 }} onFocus={() => {
-                            setIsShowKeyboard(true);
-                        }} value={inputRegion} placeholder="Місцевість..." inputMode="navigation" />
                     </View>
 
                     <TouchableOpacity style={active ? styles.postButtonActive : styles.postButton} onPress={hendleCreate} activeOpacity={0.5}>
-                        <Text style={styles.postButtonText}>Опубліковати</Text>
+                        <Text style={active ? styles.postButtonText : styles.postButtonTextActive}>Опубліковати</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -161,6 +163,14 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 20,
+    },
+    postButtonTextActive: {
+        color: "#BDBDBD", fontFamily: "Roboto-Regular",
+
+        fontWeight: '400',
+        fontStyle: 'normal',
+        fontSize: 16,
+        lineHeight: 19
     },
     postButtonActive: {
         backgroundColor: '#FF6C00',

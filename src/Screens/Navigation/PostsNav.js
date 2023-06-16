@@ -25,7 +25,7 @@ const PostsNav = ({ navigation }) => {
                         <TouchableOpacity activeOpacity={0.5}
                             onPress={() => navigation.navigate('Home', { screen: 'CreatePostsScreen' })} >
                             <Ionicons name="arrow-back-sharp" size={24} color="black" />
-                        </TouchableOpacity>),
+                        </TouchableOpacity>), headerStyle: { borderBottomWidth: 1 },
                     headerLeftContainerStyle: { paddingLeft: 10 },
                     headerTitleAlign: "center",
                     headerTitleStyle: { paddingBottom: 5 }
